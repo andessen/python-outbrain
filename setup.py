@@ -3,18 +3,16 @@ try:
 except ImportError:
     from distutils.core import setup
 
-INSTALL_REQUIRE = [
-    'pytz >= 2013.6',
-    'pyyaml >= 3.10',
-    'requests >= 2.4.3',
-    'simplejson >= 3.1.0',
-]
+INSTALL_REQUIRE = []
+with open('requirements/prod.txt') as fd:
+     for line in fd.readlines():
+        INSTALL_REQUIRE.append(line.replace(' ', ''))
 
-TEST_REQUIRE = [
-    'mock >= 1.0.1',
-    'nose >= 1.3.6',
-    'pep8 >= 1.6.2',
-]
+
+TEST_REQUIRE = []
+with open('requirements/dev.txt') as fd:
+     for line in fd.readlines():
+        TEST_REQUIRE.append(line.replace(' ', ''))
 
 setup(
     name='outbrain',

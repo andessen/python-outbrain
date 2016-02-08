@@ -1,0 +1,4 @@
+pytz >= 2015.7
+pyyaml >= 3.11
+requests >= 2.8.0
+simplejson >= 3.7.0

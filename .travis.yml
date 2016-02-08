@@ -9,6 +9,7 @@ python:
 install:
     - "pip install setuptools==20.0"
     - "python setup.py install"
+    - "pip install -r requirement/dev.txt"
 
 # command to run tests
 script:
