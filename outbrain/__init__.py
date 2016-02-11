@@ -21,37 +21,29 @@ class OutbrainAmplifyApi(object):
         self.locale = pytz.timezone("US/Eastern")  # Outbrain's reporting is in Eastern time
 
     def _request(self, path, params={}):
-        print path, params
         url = self.base_url + path
         r = requests.get(url, headers={'OB-TOKEN-V1': self.token}, params=params, verify=self.verify)
-        print r.text
         if r.status_code == 404:
             return None
         return json.loads(r.text)
 
     def _post_request(self, path, params={}):
-        print "POST", path, params
         url = self.base_url + path
         r = requests.post(url, headers={'OB-TOKEN-V1': self.token}, params=params, verify=self.verify)
-        print r.text
         if r.status_code == 404:
             return None
         return json.loads(r.text)
 
     def _put_request(self, path, params={}):
-        print "PUT", path, params
         url = self.base_url + path
         r = requests.put(url, headers={'OB-TOKEN-V1': self.token}, params=params, verify=self.verify)
-        print r.text
         if r.status_code == 404:
             return None
         return json.loads(r.text)
 
     def _detete_request(self, path, params={}):
-        print "DELETE", path, params
         url = self.base_url + path
         r = requests.delete(url, headers={'OB-TOKEN-V1': self.token}, params=params, verify=self.verify)
-        print r.text
         if r.status_code == 404:
             return None
         return json.loads(r.text)
@@ -248,7 +240,6 @@ class OutbrainAmplifyApi(object):
         for c in campaign_ids:
             path = 'campaigns/{0}/performanceByPromotedLink'.format(c)
             performance[c] = dict()
-            print "_page_performance_data"
             result = self._page_performance_data(path, start_day, end_day)
             for data in result:
                 performance[c][data['id']] = data
@@ -290,9 +281,7 @@ class OutbrainAmplifyApi(object):
             path = 'marketers/{0}/performanceByDay'.format(m)
             performance[m] = dict()
             result = self._page_performance_data(path, start_day, end_day)
-            print "starting data adding loop"
             for data in result:
-                print "adding data to result"
                 performance[m] = data
         return performance
 
@@ -331,9 +320,7 @@ class OutbrainAmplifyApi(object):
             path = 'campaigns/{0}/performanceByDay'.format(c)
             performance[c] = dict()
             result = self._page_performance_data(path, start_day, end_day)
-            print "start data adding loop"
             for data in result:
-                print "adding data to result"
                 performance[c] = data
         return performance
 
