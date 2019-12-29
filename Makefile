@@ -3,7 +3,7 @@ export PYTHONPATH=.
 export TZ=UTC
 
 install: clean
-	pip install setuptools==20.0
+	pip install setuptools==42.0.2
 	python setup.py install
 
 install-dev: install
