@@ -33,7 +33,7 @@ class OutbrainAmplifyApi(object):
                    'Content-Type': 'application/json'}
         r = request_func(url, headers=headers, params=params, data=data)
 
-        if method is 'GET':
+        if method == 'GET':
             if 200 <= r.status_code < 300:
                 return json.loads(r.text)
         else:
